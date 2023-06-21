@@ -4,49 +4,10 @@
 	<Includes>
 		<Include
 			type="all"
-			source="ART:NUVenom_SKN.w3x" />
-		<Include
-			type="all"
-			source="ART:NUVenom_FP.w3x" />
-		<Include
-			type="all"
-			source="ART:NUVenomR_SKN.w3x" />
-		<Include
-			type="all"
-			source="ART:NUVenom_IDLA.w3x" />
-		<Include
-			type="all"
-			source="ART:NUVenom_IDLB.w3x" />
-		<Include
-			type="all"
-			source="ART:NUVenom_MOV.w3x" />
-		<Include
-			type="all"
-			source="ART:NUVenom_TRNL.w3x" />
-		<Include
-			type="all"
-			source="ART:NUVenom_TRNR.w3x" />
-		<Include
-			type="all"
-			source="ART:NUVenom_HSTL.w3x" />
-		<Include
-			type="all"
-			source="ART:NUVenom_HSTR.w3x" />
-		<Include
-			type="all"
-			source="ART:NUVenom_ACCL.w3x" />
-		<Include
-			type="all"
-			source="ART:NUVenom_DECL.w3x" />
+			source="ART:EA_TIEBB.w3x" />
 		<Include
 			type="all"
 			source="ART:FXTracerNOD.xml" />
-		<Include
-			type="all"
-			source="ART:NuVenom_K.xml" />
-		<Include
-			type="all"
-			source="ART:NuVenomD_K.xml" />
 		<Include
 			type="all"
 			source="ART:FXspotlight.w3x" />
@@ -88,10 +49,10 @@
 		ProductionQueueType="AIRCRAFT"
 		UnitCategory="AIRCRAFT"
 		VoicePriority="152"
-		EditorName="NODVenom"
+		EditorName="EA_TIEBB"
 		WeaponCategory="GUN"
-		Description="Desc:NODVenom"
-		TypeDescription="Type:NODVenom">
+		Description="Desc:EmpireAircraftTIEBB"
+		TypeDescription="Type:EmpireAircraftTIEBB">
 		<DisplayName
 			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:EmpireAircraftTIEBB</DisplayName>
 		<DisplayUpgrade>Upgrade_NODTechCenterLaserCapacitor</DisplayUpgrade>

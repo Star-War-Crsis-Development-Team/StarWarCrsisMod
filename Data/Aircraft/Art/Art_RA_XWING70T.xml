@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Includes>
+		<Include type="all" source="RA_XWING70T.w3x" />
+		<Include type="all" source="RA_XWING70T_AATK.w3x" />
+		<Include type="all" source="RA_XWING70T_AFAST.w3x" />
+	</Includes>
+	
+	<Texture
+		id="RA_XWING70T"
+		File="RA_XWING70T.dds" OutputFormat="A8R8G8B8" GenerateMipMaps="false" AllowAutomaticResize="false" />
+
+
+</AssetDeclaration>

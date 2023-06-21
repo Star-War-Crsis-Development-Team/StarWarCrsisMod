@@ -1,48 +1,159 @@
-// GDI - Empire
+// Empire
 
 NAME:EmpireAircraftTIEBB
 	"TIE Bomber"
 End
 
+Type:EmpireAircraftTIEBB
+	"Aircraft"
+END
+
+Desc:EmpireAircraftTIEBB
+	"Imperial TIE Bomber"
+END
+
+
+
 NAME:EmpireAircraftTIEFT
 	"TIE Fighter"
 End
+
+Type:EmpireAircraftTIEFT
+	"Aircraft"
+END
+
+Desc:EmpireAircraftTIEFT
+	"Imperial TIE Fighter"
+END
+
+
 
 NAME:EmpireAircraftTIEINT
 	"TIE Interceptor"
 End
 
+Type:EmpireAircraftTIEINT
+	"Aircraft"
+END
+
+Desc:EmpireAircraftTIEINT
+	"Imperial TIE Interceptor"
+END
+
+// Republic
+
 NAME:RepublicAircraftAWing
 	"A-wing"
 End
+
+Type:RepublicAircraftAWing
+	"Aircraft"
+END
+
+Desc:RepublicAircraftAWing
+	"Republic A-wing"
+END
+
+
 
 NAME:RepublicAircraftBWing
 	"B-wing"
 End
 
+Type:RepublicAircraftBWing
+	"Aircraft"
+END
+
+Desc:RepublicAircraftBWing
+	"Republic B-wing"
+END
+
+
+
 NAME:RepublicAircraftNABF
 	"Naboo Fighter"
 End
 
+Type:RepublicAircraftNABF
+	"Aircraft"
+END
+
+Desc:RepublicAircraftNABF
+	"Republic Naboo Fighter"
+END
+
+
+
 NAME:RepublicAircraftRESBOMBER
-	"Naboo Fighter"
+	"Resistence Bomber"
 End
 
+Type:RepublicAircraftRESBOMBER
+	"Aircraft"
+END
+
+Desc:RepublicAircraftRESBOMBER
+	"Republic Resistence Bomber"
+END
+
+
+
 NAME:RepublicAircraftSNOWSP
-	"Naboo Fighter"
+	"Snow Speeder"
 End
+
+Type:RepublicAircraftSNOWSP
+	"Aircraft"
+END
+
+Desc:RepublicAircraftSNOWSP
+	"Republic Snow Speeder"
+END
+
+
 
 NAME:RepublicAircraftUWing
 	"U-wing"
 End
 
+Type:RepublicAircraftUWing
+	"Aircraft"
+END
+
+Desc:RepublicAircraftUWing
+	"Republic U-wing"
+END
+
+
+
 NAME:RepublicAircraftXWing
 	"X-wing"
 End
 
+Type:RepublicAircraftXWing
+	"Aircraft"
+END
+
+Desc:RepublicAircraftXWing
+	"Republic X-wing"
+END
+
+
+
 NAME:RepublicAircraftYWing
 	"Y-wing"
 End
+
+Type:RepublicAircraftYWing
+	"Aircraft"
+END
+
+Desc:RepublicAircraftYWing
+	"Republic Y-wing"
+END
+
+
+// GDI
 
 NAME:GDIZoneTrooper
 	"Dark Trooper"
