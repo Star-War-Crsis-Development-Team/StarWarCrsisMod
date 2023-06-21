@@ -18,17 +18,7 @@
 		<Include type="all" source="Vehicle/KillerBot/Index.xml" />
 		<Include type="all" source="Vehicle/LightArtilleryMech/Index.xml" />
 		
-		<Include type="all" source="Aircraft/EA_TIEBB/Index.xml">
-		<Include type="all" source="Aircraft/EA_TIEFT/Index.xml">
-		<Include type="all" source="Aircraft/EA_TIEINT/Index.xml">
-		<Include type="all" source="Aircraft/RA_AWING/Index.xml">
-		<Include type="all" source="Aircraft/RA_BWING/Index.xml">
-		<Include type="all" source="Aircraft/RA_NABF/Index.xml">
-		<Include type="all" source="Aircraft/RA_RESBOMBER/Index.xml">
-		<Include type="all" source="Aircraft/RA_SNOWSP/Index.xml">
-		<Include type="all" source="Aircraft/RA_UWING/Index.xml">
-		<Include type="all" source="Aircraft/RA_XWING70T/Index.xml">
-		<Include type="all" source="Aircraft/RA_YWING/Index.xml">
+		<Include type="all" source="Aircraft/Index.xml">
 
 	</Includes>
 
