@@ -1,4 +1,48 @@
-// GDI
+// GDI - Empire
+
+NAME:EmpireAircraftTIEBB
+	"TIE Bomber"
+End
+
+NAME:EmpireAircraftTIEFT
+	"TIE Fighter"
+End
+
+NAME:EmpireAircraftTIEINT
+	"TIE Interceptor"
+End
+
+NAME:RepublicAircraftAWing
+	"A-wing"
+End
+
+NAME:RepublicAircraftBWing
+	"B-wing"
+End
+
+NAME:RepublicAircraftNABF
+	"Naboo Fighter"
+End
+
+NAME:RepublicAircraftRESBOMBER
+	"Naboo Fighter"
+End
+
+NAME:RepublicAircraftSNOWSP
+	"Naboo Fighter"
+End
+
+NAME:RepublicAircraftUWing
+	"U-wing"
+End
+
+NAME:RepublicAircraftXWing
+	"X-wing"
+End
+
+NAME:RepublicAircraftYWing
+	"Y-wing"
+End
 
 NAME:GDIZoneTrooper
 	"Dark Trooper"
@@ -67,5 +111,5 @@ END
 // GUI
 
 GUI:FullGameName
-	"CnC3: TW - Test Mod"
+	"Star War Crsis"
 End

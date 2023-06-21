@@ -2,6 +2,18 @@
 <AssetDeclaration xmlns="uri:ea.com:eala:asset">
 	<Includes>
 		<Include type="all" source="Art/Art.xml" />
+		
+		<Include type="all" source="EA_TIEBB.xml" />
+		<Include type="all" source="EA_TIEFT.xml" />
+		<Include type="all" source="EA_TIEINT.xml" />
+		<Include type="all" source="RA_AWing.xml" />
+		<Include type="all" source="RA_BWing.xml" />
+		<Include type="all" source="RA_NAFP.xml" />
+		<Include type="all" source="RA_RESBOMBER.xml" />
+		<Include type="all" source="RA_SNOWSP.xml" />
+		<Include type="all" source="RA_UWing.xml" />
+		<Include type="all" source="RA_XWing.xml" />
+		<Include type="all" source="RA_YWing.xml" />
 	</Includes>
 
 
