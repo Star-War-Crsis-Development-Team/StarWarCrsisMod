@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Includes>
+		<Include type="all" source="Art/Art.xml" />
+		<Include type="all" source="GDIZoneTrooper.xml" />
+		<Include type="all" source="GDIZoneTrooperSquad.xml" />
+		<Include type="all" source="GDIZoneTrooperSquad_Veteran.xml" />
+	</Includes>
+
+
+</AssetDeclaration>

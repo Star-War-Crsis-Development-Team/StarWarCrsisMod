@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Includes>
+		<Include type="all" source="EUlightarty_a_atk.w3x" />
+		<Include type="all" source="EUlightarty_a_die.w3x" />
+		<Include type="all" source="EUlightarty_a_idle0.w3x" />
+		<Include type="all" source="EUlightarty_a_idle1.w3x" />
+		<Include type="all" source="EUlightarty_a_walk.w3x" />
+		<Include type="all" source="EUlightarty_skl.w3x" />
+		<Include type="all" source="EUlightarty_skn.w3x" />
+	</Includes>
+
+	<Texture
+		id="EUlightarty"
+		File="EUlightarty.tga" OutputFormat="A8R8G8B8" GenerateMipMaps="false" AllowAutomaticResize="false" />
+
+
+</AssetDeclaration>

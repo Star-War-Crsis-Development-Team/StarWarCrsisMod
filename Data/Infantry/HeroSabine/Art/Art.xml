@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Includes>
+		<Include type="all" source="RUherosabine_a_fly_atkbomb.w3x" />
+		<Include type="all" source="RUherosabine_a_fly_atkgun.w3x" />
+		<Include type="all" source="RUherosabine_a_fly_atkmissile.w3x" />
+		<Include type="all" source="RUherosabine_a_fly_idle.w3x" />
+		<Include type="all" source="RUherosabine_a_fly_move.w3x" />
+		<Include type="all" source="RUherosabine_a_fly_move2.w3x" />
+		<Include type="all" source="RUherosabine_a_fly_preatkgun.w3x" />
+		<Include type="all" source="RUherosabine_a_stand_atkall.w3x" />
+		<Include type="all" source="RUherosabine_a_stand_atkbomb.w3x" />
+		<Include type="all" source="RUherosabine_a_stand_atkgun.w3x" />
+		<Include type="all" source="RUherosabine_a_stand_idle.w3x" />
+		<Include type="all" source="RUherosabine_a_stand_preatkgun.w3x" />
+		<Include type="all" source="RUherosabine_a_takeoff.w3x" />
+		<Include type="all" source="RUherosabine_skl.w3x" />
+		<Include type="all" source="RUherosabine_skn.w3x" />
+	</Includes>
+	<Texture
+		id="RUherosabine"
+		File="RUherosabine.dds" OutputFormat="A8R8G8B8" GenerateMipMaps="false" AllowAutomaticResize="false" />
+	<Texture
+		id="HC_RUherosabine"
+		File="HC_RUherosabine.tga" OutputFormat="A8R8G8B8" GenerateMipMaps="false" AllowAutomaticResize="false" />
+
+</AssetDeclaration>

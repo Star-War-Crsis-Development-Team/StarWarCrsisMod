@@ -1,0 +1,502 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="GDIPitbull"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_GDIPitbull"
+		ButtonImage="Portrait_GDIPitbull"
+		Side="GDI"
+		EditorSorting="UNIT"
+		TransportSlotCount="1"
+		BuildCost="0"
+		BuildTime="1"
+		CommandSet="GDIPitbullCommandSet"
+		CommandPoints="100" 
+		KindOf="PRELOAD SELECTABLE CAN_ATTACK ATTACK_NEEDS_LINE_OF_SIGHT CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_REVERSE_MOVE CAN_BE_FAVORITE_UNIT"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="VEHICLE"
+		UnitCategory="VEHICLE"
+		WeaponCategory="MISSILE"
+		VoicePriority="164"
+		EditorName="GDIPitbull"
+		Description="Desc:GDIPitbull"
+		TypeDescription="Type:GDIPitbull">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:GDIPitbull</DisplayName>
+		<ArmorSet
+			Armor="GDIPitbullArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="JuggernaughtLocomotor"
+			Condition="NORMAL"
+			Speed="60.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true" />
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				TrackMarks="EXTireTrack2"
+				TrackMarksOnlyWhenCorneringQuickly="true"
+				TrackMarksLeftBone="Tire03"
+				TrackMarksRightBone="Tire04"
+				LeftFrontTireBone="Tire01"
+				RightFrontTireBone="Tire02"
+				LeftRearTireBone="Tire03"
+				RightRearTireBone="Tire04"
+				TireRotationMultiplier="0.2"
+				PowerslideRotationAddition="1.25"
+				ExtraPublicBone="Tire01 Tire02 Tire03 Tire04 FXWEAPON01 FXWEAPON02">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EULIGHTARTY_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<WeaponRecoilBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<WeaponMuzzleFlash
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<WeaponFireFXBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<WeaponRecoilBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<WeaponMuzzleFlash
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<WeaponLaunchBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<WeaponLaunchBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="B_PITCH"
+						TurretID="1" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="B_PITCH"
+						TurretID="2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="EULIGHTARTY_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="EULIGHTARTY_SKN" />
+					<Texture
+						Original="GUPitbull"
+						New="GUPitbullD" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Model
+						Name="EULIGHTARTY_SKN" />
+					<ParticleSysBone
+						BoneName="B_PITCH"
+						FXParticleSystemTemplate="GDIDebrisSmallFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="B_PITCH"
+						FXParticleSystemTemplate="GDIDebrisSmallFireDistortion"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="B_PITCH"
+						FXParticleSystemTemplate="GDIDebrisSmallSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="GUPitbull_FP" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					StateName="STATE_bored"
+					AllowRepeatInRandomPick="true"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="EUlightarty_a_idle0"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="90"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="EUlightarty_a_idle1"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="35"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Selected" or Prev == "ATNB" or Prev == "STATE_Run" then
+						CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle")
+						end
+					</Script>	
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="COMING_OUT_OF_FACTORY"
+					StateName="STATE_built">
+					<Animation
+						AnimationName="EUlightarty_a_walk"
+						AnimationBlendTime="0"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimationName="EUlightarty_a_die"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP">
+					<Animation
+						AnimationName="EUlightarty_a_idle1"
+						AnimationMode="MANUAL"
+						AnimationBlendTime="15"/>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ATTACKING">
+					<Animation
+						AnimationName="EUlightarty_a_atk"
+						AnimationMode="MANUAL" />
+				</AnimationState>
+
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="MAINTAIN_FRAME_ACROSS_STATES">
+					<Animation
+						AnimationName="EUlightarty_a_walk"
+						AnimationMode="LOOP"
+						Distance="45" />
+					<Animation
+						AnimationName="GUJugg_WLKB"
+						AnimationMode="LOOP"
+						Distance="45" />
+				</AnimationState>
+
+				<!-- SELECTED -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_Selected">
+					<Animation
+						AnimationName="EUlightarty_a_idle0"
+						AnimationMode="ONCE"
+						AnimationPriority="85"
+						AnimationBlendTime="10"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+					<Animation
+						AnimationName="EUlightarty_a_idle1"
+						AnimationMode="ONCE"
+						AnimationPriority="5"
+						AnimationBlendTime="10"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_bored" then
+						CurDrawableSetTransitionAnimState("TRANS_IdleToSelected") end
+					</Script>
+				</AnimationState>
+				
+				<!-- TRANSITIONS -->
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_built">
+					<Animation
+						AnimationName="EUlightarty_a_walk"
+						AnimationBlendTime="0"
+						AnimationMode="ONCE"></Animation>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_IdleToSelected">
+					<Animation
+						AnimationName="EUlightarty_a_idle1"
+						AnimationMode="ONCE"
+						AnimationBlendTime="10"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SelectedToIdle">
+					<Animation
+						AnimationName="EUlightarty_a_idle1"
+						AnimationMode="ONCE"
+						AnimationBlendTime="10"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+			</TruckDraw>
+					<!--  
+			<SpotlightDraw
+				id="ModuleTag_Spotlight"
+				AttachToBoneInAnotherModule="B_SPOTLIGHT"
+				RefreshTime="2.0s"
+				SweepTime="1.0s">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXspotlight" />
+					<WeaponFireFXBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXWEAPON01" />
+					<WeaponLaunchBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXWEAPON01" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</SpotlightDraw> -->
+		</Draws>
+		<Behaviors>
+			<ProductionUpdate
+				id="ProductionUpdateModuleTag"
+				GiveNoXP="true" />
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1"
+					AllowInterleavedFiring="false"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_MOST_DAMAGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="GDIPitbullMortar" />
+					<TurretSettings
+						TurretTurnRate="2000"
+						TurretPitchRate="200"
+						AllowsPitch="true"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+ <!--
+				<WeaponSlotTurret
+					ID="2"
+					AllowInterleavedFiring="false"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_MOST_DAMAGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="GDIJuggernaughtArtillery"
+						ObjectStatus="WEAPON_UPGRADED_01" />
+					<TurretSettings
+						TurretTurnRate="2000"
+						TurretPitchRate="200"
+						AllowsPitch="true"
+						MinimumPitch="60d"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0"
+						MaxDeflectionClockwise="45d"
+						MaxDeflectionAntiClockwise="45d"
+						RecenterWhenOutOfTurnRange="false">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+ -->
+			</WeaponSetUpdate>
+			<ProductionUpdate
+				id="ModuleTag_ProductionUpdate" />
+			<Physics
+				id="ModuleTag_Physics" />
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="3s"
+				SinkRate="1.0"
+				DestructionDelay="7s">
+				<OCL
+					Type="INITIAL">
+					<OCL>OCL_GDIPitBullDebris</OCL>
+				</OCL>
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="TOPPLED" />
+				<Sound
+					Type="INITIAL"
+					List="GDI_Generic_VoiceDieMS" />
+			</SlowDeath>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_GDIVehicleExplodeNoScorch" />
+			</FXListBehavior>
+			<StealthDetectorUpdate
+				id="ModuleTag_StealthDetect"
+				DetectionRange="400" />
+			<xi:include
+				href="DATA:Includes/GDICallForTransportForVehicle.xml" />
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_03">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				AILuaEventsList="GDIPitbullFunctions">
+				<UnitAITargetChooserData
+					SympathyRange="100.0"
+					RotateToTargetWhenAiming="false" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1600" />
+		</Body>
+		<ClientBehaviors>
+			<UpgradeSoundSelectorClientBehavior
+				id="ModuleTag_GDI_Pitbull_VoiceAttackMortar">
+				<Override>
+					<AudioArrayVoice>
+						<AudioEntry
+							Sound="GDI_Pitbull_VoiceAttackMortar"
+							AudioType="voiceAttack" />
+					</AudioArrayVoice>
+					<RequiredUpgrade>Upgrade_GDIArmoryPitbullMortar</RequiredUpgrade>
+				</Override>
+			</UpgradeSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="BOX"
+				MajorRadius="14.0"
+				MinorRadius="7.0"
+				Height="11.5"
+				ContactPointGeneration="VEHICLE" />
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry
+				Sound="GDI_Pitbull_VoiceAttack"
+				AudioType="voiceAttack" />
+			<AudioEntry
+				Sound="GDI_Pitbull_VoiceCreate"
+				AudioType="voiceCreated" />
+			<AudioEntry
+				Sound="GDI_Pitbull_VoiceMove"
+				AudioType="voiceMove" />
+			<AudioEntry
+				Sound="GDI_Pitbull_VoiceMove"
+				AudioType="voiceGuard" />
+			<AudioEntry
+				Sound="GDI_Pitbull_VoiceMoveAttack"
+				AudioType="voiceAttackAfterMoving" />
+			<AudioEntry
+				Sound="GDI_Pitbull_VoiceRetreat"
+				AudioType="voiceRetreatToCastle" />
+			<AudioEntry
+				Sound="GDI_Pitbull_VoiceSelectMS"
+				AudioType="voiceSelect" />
+			<AudioEntry
+				Sound="GDI_Pitbull_VoiceSelectBattleMS"
+				AudioType="voiceSelectBattle" />
+			<NamedEntry
+				Sound="GDI_Pitbull_VoiceAttackMortar"
+				Name="InitiatePitbullBombard" />
+		</AudioArrayVoice>
+		<!--
+	GDI_Pitbull_VoiceAttackMortarMS
+-->
+		<AudioArraySound>
+			<AudioEntry
+				Sound="AudioEvent:PitbullMoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="AudioEvent:PitbullIdleLoop"
+				AudioType="soundAmbient" />
+		</AudioArraySound>
+		<ShadowInfo
+			Type="VOLUME" />
+		<VisionInfo
+			VisionRange="350"
+			ShroudClearingRange="500" />
+		<CrusherInfo
+			CrusherLevel="0"
+			CrushEqualLevelProps="true"
+			CrushableLevel="2" />
+	</GameObject>
+
+
+
+	<WeaponTemplate
+		id="GDIPitbullMortar"
+		Name="GDIPitbullMortar"
+		AttackRange="300.0" 
+		WeaponSpeed="250" 
+		FireFX = "FX_GDI_PitbullMortarFireAudio"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		ClipSize="0"
+		AcceptableAimDelta="180d"
+		ScatterRadius="50"
+ 		>
+		<FiringDuration
+				MinSeconds="4.0s"
+				MaxSeconds="4.0s" />
+		<Nuggets>
+			<ProjectileNugget 
+				ProjectileTemplate="GDIPitBullArtilleryProjectile"
+				WarheadTemplate="GDIPitbullMortarWarhead" />
+			<SuppressionNugget
+				Radius="50.0"
+				Suppression="50"
+				DurationSeconds="5s" />
+		</Nuggets>
+	</WeaponTemplate>
+
+
+</AssetDeclaration>

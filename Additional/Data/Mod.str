@@ -1,0 +1,71 @@
+// GDI
+
+NAME:GDIZoneTrooper
+	"Dark Trooper"
+End
+
+Type:GDIZoneTrooper
+	"Infantry"
+END
+
+Desc:GDIZoneTrooper
+	"GDI Dark Trooper"
+END
+
+NAME:GDIPitbull
+	"Light Artillery Mech"
+End
+
+Type:GDIPitbull
+	"Vehicle"
+END
+
+Desc:GDIPitbull
+	"GDI Light Artillery Mech"
+END
+
+
+// NOD
+
+NAME:NODCommando
+	"Sabine"
+End
+
+Type:NODCommando
+	"Hero"
+END
+
+Desc:NODCommando
+	"NOD Sabine"
+END
+
+NAME:NODShadow
+	"Atrt Mech"
+End
+
+Type:NODShadow
+	"Infantry"
+END
+
+Desc:NODShadow
+	"NOD Atrt Mech"
+END
+
+NAME:NODAttackBike
+	"Killer Bot"
+End
+
+Type:NODAttackBike
+	"Vehicle"
+END
+
+Desc:NODAttackBike
+	"NOD Killer Bot"
+END
+
+
+// GUI
+
+GUI:FullGameName
+	"CnC3: TW - Test Mod"
+End

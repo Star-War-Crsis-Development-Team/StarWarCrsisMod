@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Includes>
+		<Include type="all" source="EUdarktroop_a_attack.w3x" />
+		<Include type="all" source="EUdarktroop_a_attackstand.w3x" />
+		<Include type="all" source="EUdarktroop_a_die.w3x" />
+		<Include type="all" source="EUdarktroop_a_diefly.w3x" />
+		<Include type="all" source="EUdarktroop_a_stand.w3x" />
+		<Include type="all" source="EUdarktroop_a_walk.w3x" />
+		<Include type="all" source="EUdarktroop_skl.w3x" />
+		<Include type="all" source="EUdarktroop_skn.w3x" />
+	</Includes>
+	<Texture
+		id="EUdarktroop"
+		File="EUdarktroop.tga" OutputFormat="A8R8G8B8" GenerateMipMaps="false" AllowAutomaticResize="false" />
+	<Texture
+		id="HC_EUdarktroop"
+		File="HC_EUdarktroop.tga" OutputFormat="A8R8G8B8" GenerateMipMaps="false" AllowAutomaticResize="false" />
+	<Texture
+		id="decal_empire"
+		File="decal_empire.tga" OutputFormat="A8R8G8B8" GenerateMipMaps="false" AllowAutomaticResize="false" />
+
+</AssetDeclaration>

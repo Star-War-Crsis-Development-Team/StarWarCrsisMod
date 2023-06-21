@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include type="all" source="ART:ra_bwing.w3x"/>
+	</Includes>
+	<W3DAnimation id="RA_BWING_AATK" Hierarchy="RA_BWING" NumFrames="1" FrameRate="30">
+		<CompressionSettings AllowTimeCoded="true" AllowAdaptiveDelta="true" MaxTranslationError="0.002000" MaxRotationError="0.010000" MaxVisibilityError="0.010000" MaxAdaptiveDeltaError="0.001000" ForceReductionRate="1.000000"/>
+		<Channels></Channels>
+	</W3DAnimation>
+</AssetDeclaration>

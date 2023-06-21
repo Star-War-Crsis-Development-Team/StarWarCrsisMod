@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="NODAttackBike"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_NODAttackBike"
+		ButtonImage="Portrait_NODAttackBike"
+		Side="NOD"
+		EditorSorting="UNIT"
+		TransportSlotCount="1"
+		BuildCost="0"
+		BuildTime="1"
+		CommandSet="NODAttackBikeCommandSet"
+		CommandPoints="100" 
+		KindOf="PRELOAD SELECTABLE CAN_ATTACK ATTACK_NEEDS_LINE_OF_SIGHT CAN_CAST_REFLECTIONS SCORE TRANSPORT VEHICLE CAN_BE_FAVORITE_UNIT"
+		RadarPriority="UNIT"
+		UnitCategory="VEHICLE"
+		ProductionQueueType="VEHICLE"
+		VoicePriority="160"
+		EditorName="NODAttackBike"
+		WeaponCategory="MISSILE"
+		Description="Desc:NODAttackBike"
+		TypeDescription="Type:NODAttackBike">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:NODAttackBike</DisplayName>
+		<ArmorSet
+			Armor="NODAttackBikeArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="NODAttackBikeLocomotor"
+			Condition="NORMAL"
+			Speed="140.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true" />
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				TrackMarks="EXTireTrack"
+				TrackMarksOnlyWhenCorneringQuickly="true"
+				TrackMarksLeftBone="B_CENTER"
+				TrackMarksRightBone="B_CENTER"
+				LeftFrontTireBone="Tire01"
+				RightFrontTireBone="Tire02"
+				LeftRearTireBone="Bone_FrontWheel"
+				RightRearTireBone="Bone_RearWheel"
+				TireRotationMultiplier="0.2"
+				PowerslideRotationAddition="1.25">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="RUKILLERBOT_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON02" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON02" />
+					<Turret
+						TurretNameKey="B_WEAPON01"
+						TurretPitch="Bone_PodL_Pitch"
+						TurretID="1" />
+					<Turret
+						TurretNameKey="B_WEAPON02"
+						TurretPitch="Bone_PodR_Pitch"
+						TurretID="2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="NUAtkBike_FP" />
+				</ModelConditionState>					
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="RUKILLERBOT_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="RUKILLERBOT_SKN" />
+					<Texture
+						Original="NUAtkBike"
+						New="NUAtkBikeD" />
+					<ParticleSysBone
+						BoneName="BND_HEAD"
+						FXParticleSystemTemplate="GDIDebrisSmallSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Model
+						Name="RUKILLERBOT_SKN" />
+					<ParticleSysBone
+						BoneName="BND_HEAD"
+						FXParticleSystemTemplate="GDIDebrisSmallFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BND_HEAD"
+						FXParticleSystemTemplate="GDIDebrisSmallFireDistortion"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BND_HEAD"
+						FXParticleSystemTemplate="GDIDebrisSmallSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="JUST_BUILT">
+					<Animation
+						AnimationName="RUkillerbot_a_ball_move"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="COMING_OUT_OF_FACTORY"
+					StateName="STATE_built">
+					<Animation
+						AnimationName="RUkillerbot_a_ball_move"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					AllowRepeatInRandomPick="true"
+					StateName="STATE_Idle">
+					<Animation
+						AnimationName="RUkillerbot_a_stand_idle"
+						AnimationMode="LOOP"
+						AnimationBlendTime="5" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Move" then
+						CurDrawableSetTransitionAnimState("TRANS_MoveToIdle")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimationName="RUkillerbot_a_stand_die"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USING_WEAPON_A">
+					<Animation
+						AnimationName="RUkillerbot_a_stand_atk"
+						AnimationMode="ONCE" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Move" then
+						CurDrawableSetTransitionAnimState("TRANS_MoveToIdle")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					StateName="STATE_Move">
+					<Animation
+						AnimationName="RUkillerbot_a_ball_move"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Idle" then
+						CurDrawableSetTransitionAnimState("TRANS_IdleToMove")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					AllowRepeatInRandomPick="true"
+					StateName="STATE_Selected">
+					<Animation
+						AnimationName="RUkillerbot_a_stand_ready"
+						AnimationMode="ONCE"
+						AnimationBlendTime="30"
+						AnimationPriority="5" />
+					<Animation
+						AnimationName="RUkillerbot_a_stand_idle"
+						AnimationMode="ONCE"
+						AnimationBlendTime="30"
+						AnimationPriority="1" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_IdleToMove">
+					<Animation
+						AnimationName="RUkillerbot_a_stand2ball"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_MoveToIdle">
+					<Animation
+						AnimationName="RUkillerbot_a_ball2stand"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+			</TruckDraw>
+			<!-- Forcefield Generator -->
+			<ScriptedModelDraw
+				id="ModuleTag_DrawForcefield"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Model
+						Name="FX_SHIELDBALL" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+					<!--  
+			<SpotlightDraw
+				id="ModuleTag_Spotlight"
+				AttachToBoneInAnotherModule="Driver"
+				RefreshTime="2.0s"
+				SweepTime="1.0s">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXspotlight" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="" />
+				</ModelConditionState>					
+			</SpotlightDraw> -->
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw"
+				MinLength="50.0"
+				MaxLength="50.0"
+				Width="3.0"
+				MinSpeed="30"
+				MaxSpeed="30"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame=".08"
+				MaxTracersPerFrame=".12"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="1"
+				Texture="FXTracerNOD"
+				UseAdditiveBlending="true"
+				TracerHitFx="FX_BulletHitNOD">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="0.0"
+					g="0.0"
+					b="0.0"
+					a="0.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawVeterancy"
+				MinLength="50.0"
+				MaxLength="50.0"
+				Width="3.0"
+				MinSpeed="30"
+				MaxSpeed="30"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame=".08"
+				MaxTracersPerFrame=".12"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="1"
+				Texture="FXTracerHeroic"
+				UseAdditiveBlending="true"
+				TracerHitFx="FX_BulletHitNODHeroic">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="0.0"
+					g="0.0"
+					b="0.0"
+					a="0.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw2"
+				MinLength="50.0"
+				MaxLength="50.0"
+				Width="3.0"
+				MinSpeed="30"
+				MaxSpeed="30"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame=".08"
+				MaxTracersPerFrame=".12"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="2"
+				Texture="FXTracerNOD"
+				UseAdditiveBlending="true"
+				TracerHitFx="FX_BulletHitNOD">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="0.0"
+					g="0.0"
+					b="0.0"
+					a="0.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawVeterancy2"
+				MinLength="50.0"
+				MaxLength="50.0"
+				Width="3.0"
+				MinSpeed="30"
+				MaxSpeed="30"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame=".08"
+				MaxTracersPerFrame=".12"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="2"
+				Texture="FXTracerHeroic"
+				UseAdditiveBlending="true"
+				TracerHitFx="FX_BulletHitNODHeroic">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="0.0"
+					g="0.0"
+					b="0.0"
+					a="0.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					AllowInterleavedFiring="false"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_MOST_DAMAGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="NodKillerBotMachineGun" />
+				</WeaponSlotHardpoint>
+				<WeaponSlotHardpoint
+					ID="2"
+					AllowInterleavedFiring="false"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_MOST_DAMAGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="NodKillerBotMachineGun" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_04" />
+			<ProductionUpdate
+				id="ModuleTag_08" />
+			<StealthDetectorUpdate
+				id="ModuleTag_ScannerPack_01"
+				DetectionRange="400"
+				InitiallyDisabled="false" />
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="3s"
+				SinkRate="1.0"
+				DestructionDelay="7s">
+				<OCL
+					Type="INITIAL">
+					<OCL>OCL_NODAttackBikeDebris</OCL>
+				</OCL>
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="TOPPLED" />
+				<Sound Type="INITIAL" List="NOD_Generic_VoiceDieMS" />
+			</SlowDeath>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_GDIVehicleExplodeNoScorch" />
+			</FXListBehavior>
+
+			<!-- Forcefield Generator -->
+			<StatusBitsUpgrade
+				id="ModuleTag_StatusBitUpgrade"
+				StatusToSet="SHIELDBODY_ENABLED">
+				<TriggeredBy>Upgrade_NODFaction</TriggeredBy>
+			</StatusBitsUpgrade>
+			<ShieldBodyUpdate
+				id="ModuleTag_ShieldBodyUpdate" />
+
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>			
+			<xi:include
+				href="DATA:Includes/NodCallForTransportForVehicle.xml" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_03"
+				AutoAcquireEnemiesWhenIdle="YES">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					SympathyRange="100.0"
+					RotateToTargetWhenAiming="false" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ShieldBody
+				id="ModuleTag_Body"
+				MaxHealth="800"
+				ShieldAmount="100"
+				ShieldArmor="ForcefieldFilterDamageArmor"
+				ShieldRechargeIdleTime="120s"
+				ShieldEnabledFX="FX_AlienShieldEnabled" 
+				ShieldTakeDamageFX="FX_AlienShieldHit"
+				ShieldDepleteFX="FX_AlienShieldDeplete"
+				ShieldActiveModelCondition="USER_1" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="BOX"
+				MajorRadius="14.0"
+				MinorRadius="7.0"
+				Height="11.5"></Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry
+				Sound="NOD_AttackBike_VoiceAttack"
+				AudioType="voiceAttack" />
+			<AudioEntry
+				Sound="NOD_AttackBike_VoiceCreate"
+				AudioType="voiceCreated" />
+			<AudioEntry
+				Sound="NOD_AttackBike_VoiceMove"
+				AudioType="voiceGuard" />
+			<AudioEntry
+				Sound="NOD_AttackBike_VoiceMove"
+				AudioType="voiceMove" />
+			<AudioEntry
+				Sound="NOD_AttackBike_VoiceMoveAttack"
+				AudioType="voiceAttackAfterMoving" />
+			<AudioEntry
+				Sound="NOD_AttackBike_VoiceRetreat"
+				AudioType="voiceRetreatToCastle" />
+			<AudioEntry
+				Sound="NOD_AttackBike_VoiceSelectMS"
+				AudioType="voiceSelect" />
+			<AudioEntry
+				Sound="NOD_AttackBike_VoiceSelectBattleMS"
+				AudioType="voiceSelectBattle" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="NOD_AttackBike_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="NOD_AttackBike_IdleLoop"
+				AudioType="soundAmbient" />
+		</AudioArraySound>
+		<ShadowInfo
+			Type="VOLUME" />
+		<VisionInfo
+			VisionRange="350"
+			ShroudClearingRange="500" />
+		<CrusherInfo
+			CrusherLevel="0"
+			CrushableLevel="2" />
+	</GameObject>
+
+
+
+	<WeaponTemplate
+		id="NodKillerBotMachineGun"
+		Name="NodKillerBotMachineGun" 
+		AttackRange="300.0" 
+		WeaponSpeed="999999.0"
+		FireFX="FX_GDISniperFire"
+		FireVeteranFX="FX_GDISniperFireHeroic"
+		FireSoundPerClip="HarvesterMachineGunFire"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		ClipSize="3"
+		AntiMask="ANTI_GROUND"
+		AcceptableAimDelta="10d"
+		CanFireWhileMoving="false">
+		<FiringDuration
+			MinSeconds="0.13s"
+			MaxSeconds="0.13s" />
+		<ClipReloadTime
+			MinSeconds="0.4s"
+			MaxSeconds="0.4s" />
+		<Nuggets>
+			<DamageNugget
+				Damage="30.0" 
+				Radius="0.0"
+				DelayTimeSeconds="0.0s" 
+				DamageType="GUN"
+				DamageFXType="GDI_RIFLE"
+				DamageSubType="NORMAL"
+				DeathType="NORMAL" />
+			<SuppressionNugget
+				Radius="15.0"
+				Suppression="25"
+				DurationSeconds="5s" />
+		</Nuggets>
+	</WeaponTemplate>
+
+
+
+
+</AssetDeclaration>

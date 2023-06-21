@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseInfantry.xml" />
+	</Includes>
+	<LogicCommandSet
+		id="NODCommandoCommandSet">
+		<Cmd>Command_StanceDrillDown</Cmd>
+		<Cmd>Command_NodCallForTransportInfantry</Cmd>
+		<Cmd>Command_AttackMove</Cmd>
+	</LogicCommandSet>
+	<GameObject
+		  id="NODCommando"
+		  inheritFrom="BaseInfantry"
+		  SelectPortrait="Portrait_NODCommando"
+		ButtonImage="Portrait_NODCommando"
+		  Side="NOD"
+		  EditorSorting="UNIT"
+		  TransportSlotCount="1"
+		  BuildCost="0"
+		  BuildTime="1"
+		  CommandSet="NODCommandoCommandSet"
+		  IsTrainable="true"
+		CommandPoints="100" 
+		KindOf="PRELOAD SELECTABLE CAN_ATTACK ATTACK_NEEDS_LINE_OF_SIGHT CAN_CAST_REFLECTIONS INFANTRY SCORE PATH_THROUGH_INFANTRY STEALTH_GARRISON SKIRMISH_AI_DONT_GARRISON IGNORE_FORCE_MOVE CAN_BE_FAVORITE_UNIT"
+		  RadarPriority="UNIT"
+		  BuildCompletion="APPEARS_AT_RALLY_POINT"
+		  ProductionQueueType="INFANTRY"
+		  UnitCategory="INFANTRY"
+		  WeaponCategory="GUN"
+		  VoicePriority="124"
+		  EditorName="NODCommando"
+		  Description="Desc:NODCommando"
+		  TypeDescription="Type:NODCommando"
+		  UnitTypeIcon="CommandoIcon"
+		  MaxSimultaneousOfType="999">
+		<DisplayName
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:NODCommando</DisplayName>
+		<GameDependency>
+		</GameDependency>
+		<ArmorSet
+				Armor="NODCommandoArmor"
+				DamageFX="InfantryDamageFX" />
+		<LocomotorSet
+				Locomotor="HumanLocomotor"
+				Condition="NORMAL"
+				Speed="60" />
+		<SkirmishAIInformation
+				UnitBuilderStandardCombatUnit="true" />
+		<Draws>
+			<ScriptedModelDraw
+					  id="ModuleTag_Draw"
+					  OkToChangeModelColor="true">
+				<ModelConditionState
+							ParseCondStateType="PARSE_DEFAULT">
+					<Model
+								  Name="RUHEROSABINE_SKN" />
+					<WeaponFireFXBone
+								  WeaponSlotType="PRIMARY_WEAPON"
+								  BoneName="B_GUN" />
+					<WeaponLaunchBone
+								  WeaponSlotType="PRIMARY_WEAPON"
+								  BoneName="B_GUN" />
+					<WeaponFireFXBone
+								  WeaponSlotType="SECONDARY_WEAPON"
+								  BoneName="B_GUN" />
+					<WeaponLaunchBone
+								  WeaponSlotType="SECONDARY_WEAPON"
+								  BoneName="B_GUN" />
+					<WeaponFireFXBone
+								  WeaponSlotType="TERTIARY_WEAPON"
+								  BoneName="B_GUN" />
+					<WeaponLaunchBone
+								  WeaponSlotType="TERTIARY_WEAPON"
+								  BoneName="B_GUN" />
+				</ModelConditionState>
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+				ConditionsYes="FORMATION_PREVIEW">
+				<Model
+					Name="FXCommando_FP" />
+			</ModelConditionState>			
+			<ModelConditionState
+				ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="INSIDE_GARRISON">
+					<Model
+								  Name="NUGar_Comm" />
+					<WeaponFireFXBone
+								  WeaponSlotType="PRIMARY_WEAPON"
+								  BoneName="B_WEAPONA_FX" />
+					<WeaponLaunchBone
+								  WeaponSlotType="PRIMARY_WEAPON"
+								  BoneName="B_WEAPONA_FX" />
+					<WeaponFireFXBone
+								  WeaponSlotType="TERTIARY_WEAPON"
+								  BoneName="B_WEAPONA_FX" />
+					<WeaponLaunchBone
+								  WeaponSlotType="TERTIARY_WEAPON"
+								  BoneName="B_WEAPONA_FX" />
+			</ModelConditionState>
+
+        <AnimationState 
+					ParseCondStateType="PARSE_NORMAL" 
+					ConditionsYes="COMING_OUT_OF_FACTORY"
+					StateName="STATE_built"
+					Flags="START_FRAME_FIRST">
+          <Animation 
+						AnimationName="RUherosabine_a_takeoff" 
+						AnimationBlendTime="0" 
+						AnimationMode="ONCE" />
+        </AnimationState>
+				<AnimationState
+							ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<!-- no anim -->
+				</AnimationState>					
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="INSIDE_GARRISON">
+					<!-- no anim -->
+				</AnimationState>
+				<AnimationState
+							ParseCondStateType="PARSE_DEFAULT"
+							AllowRepeatInRandomPick="true"
+							Flags="RESTART_ANIM_WHEN_COMPLETE"
+							StateName="STATE_Idle">
+					<Animation
+								  AnimationName="RUherosabine_a_fly_idle"
+								  AnimationMode="LOOP"
+								  AnimationPriority="20" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_SelectedPose" then
+						CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="DYING">
+					<Animation
+								  AnimationName="NU_Cmmndo_DIEA"
+								  AnimationMode="ONCE" />
+					<Animation
+								  AnimationName="NU_Cmmndo_DIEB"
+								  AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="MOVING USING_WEAPON_A"
+							Flags="RANDOMSTART">
+					<Animation
+								  AnimationName="RUherosabine_a_fly_move"
+								  AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="USING_WEAPON_A">
+					<Animation
+								  AnimationName="RUherosabine_a_fly_atkgun"
+								  AnimationMode="LOOP"
+                  AnimationBlendTime="7"
+                  AnimationPriority="75"/>
+				</AnimationState>
+				<AnimationState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="USING_WEAPON_B">
+					<Animation
+								  AnimationName="RUherosabine_a_fly_atkbomb"
+								  AnimationMode="ONCE"
+                  AnimationBlendTime="3"
+                  AnimationPriority="25"/>
+				</AnimationState>
+				<AnimationState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="MOVING">
+					<Animation
+								  AnimationName="RUherosabine_a_fly_move2"
+								  AnimationMode="LOOP"
+								AnimationBlendTime="15"/>
+				</AnimationState>
+				<AnimationState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="SELECTED"
+							AllowRepeatInRandomPick="true"
+							Flags="RESTART_ANIM_WHEN_COMPLETE"
+							StateName="STATE_SelectedPose">
+					<Animation
+								  AnimationName="RUherosabine_a_fly_atkmissile"
+								  AnimationMode="ONCE"
+								  AnimationPriority="1"
+								AnimationBlendTime="1"/>
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Idle" then
+						CurDrawableSetTransitionAnimState("TRANS_IdleToSelected")
+						end
+					</Script>
+				</AnimationState>
+				<!-- TRANSITIONS -->
+				<AnimationState
+							ParseCondStateType="PARSE_TRANSITION"
+							StateName="TRANS_IdleToSelected">
+					<Animation
+								  AnimationName="RUherosabine_a_fly_preatkgun"
+								  AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+							ParseCondStateType="PARSE_TRANSITION"
+							StateName="TRANS_SelectedToIdle">
+					<Animation
+								  AnimationName="RUherosabine_a_fly_preatkgun"
+								  AnimationMode="ONCE_BACKWARDS" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<LaserDraw
+					id="ModuleTag_LaserDraw"
+					Texture1_UTile="1"
+					Texture1_VTile=".5"
+					Texture1_UScrollRate="0"
+					Texture1_VScrollRate=".2"
+					Texture1_NumFrames="1"
+					Texture1_FrameRate="30"
+					Texture2_UTile="1"
+					Texture2_VTile=".03"
+					Texture2_UScrollRate="0"
+					Texture2_VScrollRate="1"
+					Texture2_NumFrames="1"
+					Texture2_FrameRate="30"
+					LaserWidth="5"
+					WeaponSlotID="1"
+					LaserStateID="1">
+					<FXShader
+						ShaderName="Laser.fx"
+						TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />					
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDistort"
+				UseDistortionShader="true"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="2"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".7"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				WeaponSlotID="1"
+				LaserStateID="1">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />				
+			</LaserDraw>			
+			<LaserDraw
+				id="ModuleTag_LaserDrawTertiary"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".03"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="5"
+				WeaponSlotID="1"
+				LaserStateID="2">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />					
+			</LaserDraw>
+			<LaserDraw
+					id="ModuleTag_LaserDrawVeterancy"
+					Texture1_UTile="1"
+					Texture1_VTile=".5"
+					Texture1_UScrollRate="0"
+					Texture1_VScrollRate="1"
+					Texture1_NumFrames="1"
+					Texture1_FrameRate="30"
+					Texture2_UTile="1"
+					Texture2_VTile=".03"
+					Texture2_UScrollRate="0"
+					Texture2_VScrollRate="1"
+					Texture2_NumFrames="1"
+					Texture2_FrameRate="30"
+					LaserWidth="5"
+					WeaponSlotID="1"
+					LaserStateID="1">
+					<FXShader
+						ShaderName="Laser.fx"
+						TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaserHeroic</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />				
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDrawTertiaryVeterancy"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="1"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".03"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="5"
+				WeaponSlotID="1"
+				LaserStateID="2">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaserHeroic</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />				
+			</LaserDraw>			
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+					  id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+							ID="1"
+					AllowInterleavedFiring="true"
+							InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE">
+					<Weapon
+								  Ordering="PRIMARY_WEAPON"
+								  Template="NODCommandoLaserCarbine" />
+					<Weapon
+								  Ordering="SECONDARY_WEAPON"
+								  Template="NODCommandoSatchelChargeDispatchWeapon" />
+					<Weapon
+								  Ordering="TERTIARY_WEAPON"
+								  Template="NODCommandoLaserCarbineContained" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<LaserState
+					  id="ModuleTag_LaserState"
+					  LaserId="1" />
+			<LaserState
+					  id="ModuleTag_LaserStateTertiary"
+					  LaserId="2" />
+			<StealthDetectorUpdate
+					  id="ModuleTag_StealthDetect"
+					  DetectionRange="100" />
+			<Physics
+					  id="ModuleTag_Physics" />
+			<ProductionUpdate
+					  id="ModuleTag_ProductionUpdate" />
+			<EmotionTrackerUpdate
+					  id="Module_ETU">
+				<TauntAndPointExcluded
+							Rule="NONE" />
+				<AddEmotion>CheerIdle_Base</AddEmotion>
+				<AddEmotion>CheerBusy_Base</AddEmotion>
+			</EmotionTrackerUpdate>
+			<SlowDeath
+					  id="ModuleTag_Death"
+					  SinkDelay="0.13s"
+					  SinkRate="9.9"
+					  DestructionDelay="0.13s">
+				<DieMuxData
+							DeathTypes="ALL" />
+				<Sound Type="INITIAL" List="NOD_Commando_VoiceDie" />
+			</SlowDeath>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_NOD_ScorpionTank_CannonProjectileImpactExplosion" />
+			</FXListBehavior>
+			<BezierProjectile
+					  id="ModuleTag_Projectile"
+					  FirstHeightMin="104"
+					  FirstHeightMax="104"
+					  SecondHeightMin="52"
+					  SecondHeightMax="52"
+					  FirstPercentIndent="20"
+					  SecondPercentIndent="70"
+					  TumbleRandomly="true"
+					  CrushStyle="true"
+					  BounceCount="0"
+					  FinalStuckTime="1.766s"
+					  PreLandingStateTime="0.3s" />
+			<SuppressionUpdate
+					  id="ModuleTag_SuppressionUpdate"
+					  UpdateDelay="0.5s"
+					  Suppressability="1000"
+					  SuppressionDuration="1.5s"
+					  AttributeModifierSuppressed="Modifier_Test_Suppression"
+					  AttributeModifierForceMove="Modifier_Test_Suppression_ForceMove" />
+			<FindCoverBehavior
+					  id="ModuleTag_FCB"
+					  CoverScanRange="10.0"
+					  AttributeModifierInCover="Modifier_Cover" />
+			<xi:include
+					  href="DATA:Includes/NodCallForTransportInfantry.xml" />
+			<StancesBehavior
+					  id="ModuleTag_Stance"
+					  StanceTemplate="Generic" />
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>				
+		</Behaviors>
+		<AI>
+			<AIUpdate
+					  id="ModuleTag_AI"
+					  AutoAcquireEnemiesWhenIdle="YES">
+				<UnitAITargetChooserData
+							SympathyRange="100.0"
+							IdleScanDelay="0.01s" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+					  id="ModuleTag_Body"
+					  MaxHealth="500.0" />
+		</Body>
+		<Geometry
+				IsSmall="true">
+			<Shape
+					  Type="CYLINDER"
+					  MajorRadius="7.0"
+					  Height="23.0"
+					  ContactPointGeneration="SQUAD_MEMBER"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry
+					  Sound="NOD_Commando_VoiceAttack"
+					  AudioType="voiceAttack" />
+			<AudioEntry
+			        Sound="NOD_Commando_VoiceAttackC4"
+					AudioType="voiceAttackStructure" />
+			<AudioEntry
+					Sound="NOD_Commando_VoiceCreateMS"
+					AudioType="voiceCreated" />
+			<AudioEntry
+					Sound="NOD_Commando_VoiceGarrison"
+					AudioType="voiceGarrison" />
+			<AudioEntry
+					Sound="NOD_Commando_VoiceMove"
+					AudioType="voiceGuard" />
+			<AudioEntry
+					Sound="NOD_Commando_VoiceMove"
+					AudioType="voiceMove" />
+			<AudioEntry
+					Sound="NOD_Commando_VoiceMoveAttack"
+					AudioType="voiceAttackAfterMoving" />
+			<AudioEntry
+					Sound="NOD_Commando_VoiceRetreat"
+					AudioType="voiceRetreatToCastle" />
+			<AudioEntry
+					Sound="NOD_Commando_VoiceSelectMS"
+					AudioType="voiceSelect" />
+			<AudioEntry
+					Sound="NOD_Commando_VoiceSelectBattleMS"
+					AudioType="voiceSelectBattle" />
+			<NamedEntry
+					Sound="NOD_Commando_VoiceAttackC4"
+					Name="InitiatePlaceSatchelCharge" />
+			<NamedEntry
+					Sound="NOD_Commando_VoiceAttackC4"
+					Name="InitiatePlaceSatchelChargeSticky" />
+		</AudioArrayVoice>
+		<!--
+	NOD_Commando_VoiceSuppressMS
+-->
+		<ShadowInfo
+				Type="DECAL"
+				SizeX="14"
+				SizeY="14"
+				Texture="ShadowI" />
+		<VisionInfo
+				VisionRange="350"
+				ShroudClearingRange="400" />
+		<EvaEvents
+				EvaEnemyObjectSightedEvent="EnemyCommandoDetected" />
+				
+		<CrusherInfo
+			CrushableLevel="3"
+			/>		
+	</GameObject>
+
+<!--
+		FireFX="FX_NODSpitfireFire"
+		FireVeteranFX="FX_NODSpitfireFireHeroic"
+-->
+
+
+	<WeaponTemplate
+		id="NODCommandoLaserCarbine"
+		Name="NODCommandoLaserCarbine"
+		AttackRange="300.0" 
+		WeaponSpeed="500" 
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		ClipSize="10"
+		FireSound="NOD_Commando_Weapon1Fire"
+		CanFireWhileMoving="true"
+		AcceptableAimDelta="10d"
+		ForbiddenFiringObjectStatus="INSIDE_GARRISON"
+		>
+		<FiringDuration
+			MinSeconds="0.7s"
+			MaxSeconds="0.7s" />
+		<ClipReloadTime
+			MinSeconds="0.4s"
+			MaxSeconds="0.4s" />
+		<Nuggets>
+			<ActivateLaserNugget
+				Lifetime="0.1s"
+				LaserId="1">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE VALID_TARGET_FOR_C4" />
+			</ActivateLaserNugget>
+			<DamageNugget 
+				Damage="500.0" 
+				Radius="0.0" 
+				DamageType="SNIPER" 
+				DamageFXType="NOD_LASER"
+				DeathType="NORMAL">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE VALID_TARGET_FOR_C4" />
+			</DamageNugget>
+			<SuppressionNugget
+				Radius="75.0"
+				Suppression="50"
+				DurationSeconds="5.0s">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE VALID_TARGET_FOR_C4" />
+			</SuppressionNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+
+	<WeaponTemplate
+		id="NODCommandoSatchelChargeDispatchWeapon"
+		Name="NODCommandoSatchelChargeDispatchWeapon" 
+		AttackRange="300.0" 
+		WeaponSpeed="100" 
+		MinWeaponSpeed="100" 
+		MaxWeaponSpeed="121" 
+		AcceptableAimDelta="20d"
+		PreAttackType="PER_SHOT"
+		ClipSize="1"  
+		AutoReloadsClip="AUTO"
+		>
+		<PreAttackDelay
+		  MinSeconds="0.8s"
+		  MaxSeconds="0.8s" />
+		<FiringDuration
+				MinSeconds="1.3s"
+				MaxSeconds="1.3s" />
+		<ClipReloadTime
+				MinSeconds="0.13s"
+				MaxSeconds="0.13s" />
+		<Nuggets>
+			<ProjectileNugget 
+				ProjectileTemplate="GDIGrenadeSoldierGrenadeProjectile"
+				WarheadTemplate="GDIGrenadeSoldierGrenadeWarhead">
+				<VeterancyProjectiles
+					VeterancyLevel="HEROIC"
+					ProjectileTemplate="GDIGrenadeSoldierGrenadeProjectile_Veteran"/>
+			</ProjectileNugget>
+			<SuppressionNugget
+				Radius="50.0"
+				Suppression="20"
+				DurationSeconds="7.5s" />
+		</Nuggets>
+		<ScatterRadiusVsType
+			Radius="15.0">
+			<Filter
+				Rule="NONE"
+				Include="INFANTRY" />
+		</ScatterRadiusVsType>
+	</WeaponTemplate>
+
+
+</AssetDeclaration>

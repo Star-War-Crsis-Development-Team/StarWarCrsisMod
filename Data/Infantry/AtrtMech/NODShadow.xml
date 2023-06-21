@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseInfantry.xml" />
+	</Includes>
+	<GameObject
+		id="NODShadow"
+		inheritFrom="BaseInfantry"
+		SelectPortrait="Portrait_NODShadow"
+		ButtonImage="Portrait_NODShadow"
+		Side="NOD"
+		EditorSorting="UNIT"
+		TransportSlotCount="1"
+		BuildCost="200"
+		BuildTime="2"
+		CommandSet="EmptyCommandSet"
+		IsTrainable="true"
+		KindOf="PRELOAD SELECTABLE CAN_ATTACK ATTACK_NEEDS_LINE_OF_SIGHT CAN_CAST_REFLECTIONS INFANTRY INFILTRATOR PATH_THROUGH_INFANTRY"
+		RadarPriority="UNIT"
+		BuildCompletion="APPEARS_AT_RALLY_POINT"
+		ProductionQueueType="INFANTRY"
+		UnitCategory="INFANTRY"
+		WeaponCategory="GUN"
+		VoicePriority="116"
+		EditorName="NODShadow"
+		Description="Desc:NODShadow"
+		TypeDescription="Type:NODShadow">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:NODShadow</DisplayName>
+		<ArmorSet
+			Armor="NODShadowArmor"
+			DamageFX="InfantryDamageFX" />
+		<LocomotorSet
+			Locomotor="HumanLocomotor"
+			Condition="NORMAL"
+			Speed="90" />
+		<LocomotorSet
+			Locomotor="FlyingShadowLocomotor"
+			Condition="NORMAL_UPGRADED"
+			Speed="150.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="B_WEAPONA_FX B_WEAPONB_FX">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="RUATRT_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<WeaponRecoilBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<WeaponMuzzleFlash
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<WeaponFireFXBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<WeaponRecoilBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<WeaponMuzzleFlash
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<WeaponLaunchBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON" />
+					<WeaponLaunchBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="B_WEAPON" />
+				</ModelConditionState>
+				
+				<xi:include
+					href="DATA:Includes/GDIUnitFormationPreviewStates.xml"
+					xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:FormationPreviewStates/child::*)" />				
+				
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+					<Model
+						Name="NUGar_Shad" />
+					<WeaponFireFXBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPONA_FX" />
+					<WeaponRecoilBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="" />
+					<WeaponMuzzleFlash
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="" />
+					<WeaponFireFXBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="B_WEAPONA_FX" />
+					<WeaponRecoilBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="" />
+					<WeaponMuzzleFlash
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="" />
+					<WeaponLaunchBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPONA_FX" />
+					<WeaponLaunchBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="B_WEAPONA_FX" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+					<!-- no anim -->
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					AllowRepeatInRandomPick="true"
+					StateName="STATE_Idle">
+					<Animation
+						AnimationName="RUatrt_a_stand"
+						AnimationMode="ONCE"
+						AnimationPriority="1" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Selected" then
+							CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FRONTCRUSHED">
+					<Animation
+						AnimationName="RUatrt_a_die"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BACKCRUSHED">
+					<Animation
+						AnimationName="RUatrt_a_die"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimationName="RUatrt_a_die"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING USING_WEAPON_A">
+					<Animation
+						AnimationName="RUatrt_a_walk"
+						AnimationMode="LOOP"
+						Distance="25" />
+				</AnimationState>
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_A">
+          <Animation
+						AnimationName="RUatrt_a_shoot"
+						AnimationMode="LOOP"/>
+        </AnimationState>
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="RUatrt_a_walk"
+						AnimationMode="LOOP"
+						Distance="25" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ATTACKING"
+					Flags="MAINTAIN_FRAME_ACROSS_STATES">
+					<Animation
+						AnimationName="RUatrt_a_shoot"/>
+				</AnimationState>
+				<!-- SELECTED -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					StateName="STATE_Selected"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="RUatrt_a_stand"
+						AnimationMode="ONCE"
+						AnimationPriority="15"
+						AnimationBlendTime="5"
+						AnimationMustCompleteBlend="true" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Idle" then
+							CurDrawableSetTransitionAnimState("TRANS_IdleToSelected")
+						end
+					</Script>
+				</AnimationState>
+				<!-- TRANSITIONS -->
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_IdleToSelected">
+					<Animation
+						AnimationName="RUatrt_a_stand"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SelectedToIdle">
+					<Animation
+						AnimationName="RUatrt_a_stand"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".03"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="5"
+				WeaponSlotID="1"
+				LaserStateID="1">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_02" />				
+			</LaserDraw>
+			<LaserDraw
+					id="ModuleTag_LaserDrawVeterancy"
+					Texture1_UTile="1"
+					Texture1_VTile=".5"
+					Texture1_UScrollRate="0"
+					Texture1_VScrollRate="1"
+					Texture1_NumFrames="1"
+					Texture1_FrameRate="30"
+					Texture2_UTile="1"
+					Texture2_VTile=".03"
+					Texture2_UScrollRate="0"
+					Texture2_VScrollRate="1"
+					Texture2_NumFrames="1"
+					Texture2_FrameRate="30"
+					LaserWidth="5"
+					WeaponSlotID="1"
+					LaserStateID="1">
+					<FXShader
+						ShaderName="Laser.fx"
+						TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaserHeroic</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_02" />				
+			</LaserDraw>			
+			<LaserDraw
+				id="ModuleTag_LaserDistort"
+				UseDistortionShader="true"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="2"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".7"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				WeaponSlotID="1"
+				LaserStateID="1">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_02" />				
+			</LaserDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					AllowInterleavedFiring="true"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_MOST_DAMAGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="NODShadowLaser" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<LaserState
+				id="ModuleTag_LaserState"
+				LaserId="1" />
+			<ModelConditionUpgrade
+				id="ModuleTag_AllFactionUpgrade"
+				AddConditionFlags="USER_5">
+				<TriggeredBy>Upgrade_AllFactionUpgrade</TriggeredBy>
+			</ModelConditionUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_02">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<Physics
+				id="ModuleTag_Physics" />
+			<ProductionUpdate
+				id="ModuleTag_ProductionUpdate" />
+			<SlowDeath
+				id="ModuleTag_FlyingDeath"
+				SinkDelay="3s"
+				SinkRate="2.4"
+				FlingForce="1"
+				DestructionDelay="4.5s">
+				<DieMuxData
+					DeathTypes="ALL"
+					RequiredStatus="AIRBORNE_TARGET" />
+				<FX	Type="INITIAL">
+					<FX>FX_NOD_Shadow_VoiceDie</FX>
+				</FX>
+<!--				<Sound Type="INITIAL" List="NOD_Shadow_VoiceDie" /> -->
+			</SlowDeath>
+			<SlowDeath
+				id="ModuleTag_StandingDeath"
+				SinkDelay="3s"
+				SinkRate="2.4"
+				DestructionDelay="4.5s">
+				<DieMuxData
+					DeathTypes="ALL"
+					ExemptStatus="AIRBORNE_TARGET" />
+			</SlowDeath>
+			<FindCoverBehavior
+				id="ModuleTag_FCB"
+				CoverScanRange="10.0"
+				AttributeModifierInCover="Modifier_Cover" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES">
+				<UnitAITargetChooserData
+					SympathyRange="100.0" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_03"
+				MaxHealth="150" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior
+				id="ModuleTag_FlyingLoop">
+				<ModelConditionSound Sound="NOD_ShadowSquad_FlyingIdlingLoop" RequiredFlags="FLYING" ExcludedFlags="DYING"/>
+				<!-- <ModelConditionSound Sound="NOD_ShadowSquad_IdleGliderLoop" RequiredFlags="FLYING" /> -->
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior
+				id="ModuleTag_FlyingLoop">
+				<ModelConditionSound Sound="NOD_ShadowSquad_RunningLoop" RequiredFlags="MOVING" ExcludedFlags="FLYING DECELERATE DYING"/>
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior
+				id="ModuleTag_FlyingSounds">
+				<Override
+					RequiredFlags="FLYING">
+					<AudioArrayVoice>
+						<AudioEntry
+							Sound="NOD_Shadow_VoiceSelectGlidersMS"
+							AudioType="voiceSelect" />
+						<AudioEntry
+							Sound="NOD_Shadow_VoiceSelectBattleGlidersMS"
+							AudioType="voiceSelectBattle" />
+					</AudioArrayVoice>
+					<AudioArraySound>
+						<AudioEntry
+							Sound="NOD_ShadowSquad_MoveStartFlyingMS"
+							AudioType="soundMoveStart" />
+					</AudioArraySound>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="7.0"
+				Height="13.0"
+				ContactPointGeneration="SQUAD_MEMBER"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry
+				Sound="NOD_Shadow_VoiceAttack"
+				AudioType="voiceAttack" />
+			<AudioEntry
+				Sound="NOD_Shadow_VoiceCreate"
+				AudioType="voiceFullyCreated" />
+			<AudioEntry
+				Sound="NOD_Shadow_VoiceGarrison"
+				AudioType="voiceGarrison" />
+			<AudioEntry
+				Sound="NOD_Shadow_VoiceMove"
+				AudioType="voiceGuard" />
+			<AudioEntry
+				Sound="NOD_Shadow_VoiceMove"
+				AudioType="voiceMove" />
+      <AudioEntry
+				Sound="NOD_Shadow_VoiceMoveAttack"
+				AudioType="voiceAttackAfterMoving" />
+      <AudioEntry
+				Sound="NOD_Shadow_VoiceRetreat"
+				AudioType="voiceRetreatToCastle" />
+			<AudioEntry
+				Sound="NOD_Shadow_VoiceSelectMS"
+				AudioType="voiceSelect" />
+			<AudioEntry
+				Sound="NOD_Shadow_VoiceSelectBattleMS"
+				AudioType="voiceSelectBattle" />
+			<NamedEntry
+				Sound="NOD_Shadow_VoiceSatchelCharge"
+				Name="InitiatePlaceSatchelCharge_NOD" />
+			<NamedEntry
+				Sound="NOD_Shadow_VoiceMoveGlider"
+				Name="InitiateGliderLiftOffTrigger" />
+			<NamedEntry
+				Sound="NOD_Shadow_VoiceMoveGlider"
+				Name="InitiateGliderLiftOff" />
+			<NamedEntry
+				Sound="NOD_Shadow_VoiceMoveGlider"
+				Name="InitiateGliderLiftOffDispatch" />
+		</AudioArrayVoice>
+<!--
+		<AudioArraySound>
+			<AudioEntry
+				Sound="NOD_ShadowSquad_RunningLoop"
+				AudioType="soundMoveLoop" />
+		</AudioArraySound>
+-->
+		<ShadowInfo
+			Type="DECAL"
+			SizeX="14"
+			SizeY="14"
+			Texture="ShadowI" />
+		<VisionInfo
+			VisionRange="350"
+			ShroudClearingRange="400" />
+	</GameObject>
+
+
+	<WeaponTemplate
+		id="NODShadowLaser"
+		Name="NODVenomMinigunLaser" 
+		AttackRange="250.0" 
+		WeaponSpeed="999999.0"
+		FireSound="NOD_Venom_CapacitorFire"
+		FireFX="FX_NODSpitfireFire"
+		FireVeteranFX="FX_NODSpitfireFireHeroic"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		CanFireWhileMoving="true"
+		AcceptableAimDelta="30d"
+		ReAcquireDetailType="PRE_FIRE"
+		AntiMask="ANTI_GROUND"
+		ClipSize="4"
+		>
+		<FiringDuration
+			MinSeconds="0.6s"
+			MaxSeconds="0.6s" />
+		<ClipReloadTime
+			MinSeconds="0.4s"
+			MaxSeconds="0.5s"/>
+		<Nuggets>
+			<ActivateLaserNugget
+				Lifetime="0.25s"
+				LaserId="1"
+				HitGroundFX="FX_NODSpitfireHit"/>
+			<DamageNugget 
+				Damage="150.0" 
+				Radius="0.0" 
+				DamageType="GUN" 
+				DamageFXType="NOD_LASER"
+				DeathType="LASERED" >
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE VALID_TARGET_FOR_C4" />
+			</DamageNugget>
+			<DamageNugget 
+				Damage="1.0" 
+				Radius="0.0" 
+				DamageType="GUN" 
+				DamageFXType="NOD_LASER"
+				DeathType="LASERED" >
+				<SpecialObjectFilter
+					Rule="ALL"
+					Include="STRUCTURE VALID_TARGET_FOR_C4" />
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+
+	<ArmorTemplate
+		id="NODShadowArmor"
+		Default="100"
+		SideDamageScalar="100"
+		RearDamageScalar="50">
+		<Armor
+			Damage="CANNON"
+			Percent="25" />
+		<Armor
+			Damage="ROCKET"
+			Percent="25" />
+		<Armor
+			Damage="GRENADE"
+			Percent="75" />
+		<Armor
+			Damage="GUN"
+			Percent="100" />
+		<Armor
+			Damage="SNIPER"
+			Percent="100"/>
+	</ArmorTemplate>
+
+</AssetDeclaration>

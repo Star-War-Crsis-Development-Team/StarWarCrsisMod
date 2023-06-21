@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseInfantry.xml" />
+	</Includes>
+	<GameObject
+		id="GDIZoneTrooper"
+		inheritFrom="BaseInfantry"
+		SelectPortrait="Portrait_GDIZoneTrooper"
+		ButtonImage="Portrait_GDIZoneTrooper"
+		Side="GDI"
+		EditorSorting="UNIT"
+		TransportSlotCount="1"
+		BuildCost="0"
+		BuildTime="1"
+		CommandSet="EmptyCommandSet"
+		KindOf="PRELOAD SELECTABLE CAN_ATTACK ATTACK_NEEDS_LINE_OF_SIGHT CAN_CAST_REFLECTIONS INFANTRY PATH_THROUGH_INFANTRY"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="INFANTRY"
+		UnitCategory="INFANTRY"
+		WeaponCategory="CANNON"
+		VoicePriority="136"
+		EditorName="GDIZoneTrooper"
+		Description="Desc:GDIZoneTrooper"
+		TypeDescription="Type:GDIZoneTrooper">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:GDIZoneTrooper</DisplayName>
+		<DisplayUpgrade>Upgrade_ZoneTrooperScannerPack</DisplayUpgrade>
+		<DisplayUpgrade>Upgrade_ZoneTrooperAutoInjectors</DisplayUpgrade>
+		<!--<Prerequisites
+			Object="GDIBarracks" />-->
+		<ArmorSet
+			Armor="GDIZoneTrooperArmor"
+			DamageFX="InfantryDamageFX" />
+		<LocomotorSet
+			id="GDIZoneTrooperLocomotor"
+			Locomotor="HumanLocomotor"
+			Condition="NORMAL"
+			Speed="60" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="MUZZLEFLASH">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EUDARKTROOP_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON01" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON01" />
+					<WeaponMuzzleFlash
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON02" />
+					<WeaponRecoilBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON02" />
+					<WeaponMuzzleFlash
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON02" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPON02" />
+				</ModelConditionState>
+
+				<xi:include
+					href="DATA:Includes/GDIUnitFormationPreviewStates.xml"
+					xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:FormationPreviewStates/child::*)" />
+				
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+					<Model
+						Name="GUGar_Zone" />
+					<WeaponFireFXBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPONA_FX" />
+					<WeaponLaunchBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPONA_FX" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+					<!-- no anim -->
+				</AnimationState>
+				<!-- IDLE STATES -->
+        <AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					StateName="STATE_Idle"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+         <!-- AllowRepeatInRandomPick="true" -->
+          <Animation
+						AnimationName="EUdarktroop_a_stand"
+						AnimationMode="ONCE"
+            AnimationBlendTime="15"
+						AnimationPriority="75"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+
+          <Script>
+            Prev = CurDrawablePrevAnimationState()
+            if Prev == "STATE_Selected" then CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle") end
+            if Prev == "State_AboutToLand" then CurDrawableSetTransitionAnimState( "TRANS_AboutToHitGround_To_Idle" ) end
+          </Script>
+        </AnimationState>
+				<!-- DYING -->
+				<!--
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FRONTCRUSHED">
+					<Animation
+						AnimationName="AUShkTrpr_CDTA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				-->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FRONTCRUSHED">
+					<Animation
+						AnimationName="EUdarktroop_a_diefly"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BACKCRUSHED">
+					<Animation
+						AnimationName="EUdarktroop_a_die"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimationName="EUdarktroop_a_die"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<!-- AIRBORNE - Jumpjet ability -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SPECIAL_WEAPON_ONE UNPACKING"
+					StateName="State_JumpJetInitiate">
+					<Animation
+						AnimationName="GUZNTRPR_JET1"
+						AnimationMode="ONCE" />
+					<ParticleSysBone
+						BoneName="Main_Thrstr_R"
+						FXParticleSystemTemplate="GDIZTJumpStartDist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Main_Thrstr_R"
+						FXParticleSystemTemplate="GDIZTJumpStartFire"
+						FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ABOUT_TO_HIT"
+					StateName="State_AboutToLand">
+					<Animation
+						AnimationName="GUZNTRPR_JET4"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SPECIAL_WEAPON_ONE PACKING"
+					StateName="State_JumpJetJumping">
+					<Animation
+						AnimationName="GUZNTRPR_JET2"
+						AnimationMode="ONCE" />
+					<ParticleSysBone
+						BoneName="MAIN_THRSTR"
+						FXParticleSystemTemplate="GDIZTFireDust"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="MAIN_THRSTR"
+						FXParticleSystemTemplate="GDIZTFireDist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="MAIN_THRSTR"
+						FXParticleSystemTemplate="GDIZTFireFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ZT_SPINE2"
+						FXParticleSystemTemplate="GDIZTJumpTrailFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ZT_SPINE2"
+						FXParticleSystemTemplate="GDIZTJumpTrailSmoke"
+						FollowBone="true" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState();
+						if Prev == "State_AboutToLand" then CurDrawableSetTransitionAnimState( "TRANS_AboutToHitGround_To_Idle" ) end;
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="THROWN_PROJECTILE">
+					<Animation
+						AnimationName="GUZNTRPR_JET3"
+						AnimationMode="ONCE"
+						AnimationBlendTime="10"/>
+					<ParticleSysBone
+						BoneName="ZT_SPINE2"
+						FXParticleSystemTemplate="GDIZTJumpTrailFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ZT_SPINE2"
+						FXParticleSystemTemplate="GDIZTJumpTrailSmoke"
+						FollowBone="true" />					
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_FLAILING"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="GUZNTRPR_FLYA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING SPLATTED">
+					<Animation
+						AnimationName="EUdarktroop_a_diefly"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_STANDING_UP">
+					<Animation
+						AnimationName="GUZNTRPR_GTPA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED">
+					<Animation
+						AnimationName="GUZNTRPR_LNDA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<!-- MOVING AND ATTACKING -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING FIRING_OR_PREATTACK_A"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="EUdarktroop_a_walk"
+						AnimationMode="LOOP"
+						Distance="50" />
+				</AnimationState>
+				<!-- MOVING -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART RESTART_ANIM_WHEN_COMPLETE">
+          <!--	<Animation
+						AnimationName="GUZNTRPR_RUNA"
+						AnimationMode="LOOP"
+						Distance="50" /> -->
+					<Animation
+						AnimationName="EUdarktroop_a_walk"
+						AnimationMode="LOOP"
+						Distance="50" />
+				</AnimationState>
+				<!-- ATTACKING -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_A">
+					<Animation
+						AnimationName="EUdarktroop_a_attack"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USING_WEAPON_A">
+					<Animation
+						AnimationName="EUdarktroop_a_attack"
+						AnimationMode="MANUAL" />
+				</AnimationState>
+				<!-- EMOTIONS -->
+				<!-- CELEBRATING -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+          Flags="RESTART_ANIM_WHEN_COMPLETE"
+					ConditionsYes="EMOTION_CELEBRATING">
+					<Animation
+						AnimationName="GUZNTRPR_CHRA"
+						AnimationMode="ONCE"
+            AnimationBlendTime="10"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+          <Animation
+						AnimationName="GUZNTRPR_CHRC"
+						AnimationMode="ONCE"
+            AnimationBlendTime="10"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+				<!-- SELECTED -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+          Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_Selected">
+					<Animation
+						AnimationName="EUdarktroop_a_stand"
+						AnimationMode="ONCE"
+            AnimationBlendTime="15"
+            AnimationPriority="50"
+            AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="EUdarktroop_a_attack"
+						AnimationMode="ONCE"
+            AnimationBlendTime="15"
+            AnimationPriority="50"
+            AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Idle" then CurDrawableSetTransitionAnimState("TRANS_IdleToSelected") end
+					</Script>
+				</AnimationState>
+				<!-- TRANSITIONS -->
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_AboutToHitGround_To_Idle">
+					<Animation
+						AnimationName="GUZNTRPR_JET5"
+						AnimationMode="ONCE"
+						AnimationBlendTime="0" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_IdleToSelected">
+					<Animation
+						AnimationName="EUdarktroop_a_stand"
+						AnimationMode="ONCE"
+            AnimationBlendTime="5"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SelectedToIdle">
+					<Animation
+						AnimationName="EUdarktroop_a_stand"
+						AnimationMode="ONCE"
+            AnimationBlendTime="18"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw_Primary"
+				MinLength="50.0"
+				MaxLength="50.0"
+				Width="3.0"
+				MinSpeed="30"
+				MaxSpeed="30"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame=".5"
+				MaxTracersPerFrame=".5"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracerNOD"
+				UseAdditiveBlending="true"
+				TracerHitFx="FX_BulletHitNOD">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="0.0"
+					g="0.0"
+					b="0.0"
+					a="0.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw_PrimaryVeterancy"
+				MinLength="50.0"
+				MaxLength="50.0"
+				Width="3.0"
+				MinSpeed="30"
+				MaxSpeed="30"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame=".5"
+				MaxTracersPerFrame=".5"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracerHeroic"
+				UseAdditiveBlending="true"
+				TracerHitFx="FX_BulletHitNODHeroic">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="0.0"
+					g="0.0"
+					b="0.0"
+					a="0.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					AllowInterleavedFiring="false"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_MOST_DAMAGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="NODShadowMachinePistol" />
+				</WeaponSlotHardpoint>
+				<WeaponSlotHardpoint
+					ID="2"
+					AllowInterleavedFiring="false"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_MOST_DAMAGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="GDIMissileSoldierMissileLauncher" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<LaserState
+				id="ModuleTag_LaserState"
+				LaserId="0"></LaserState>
+			<Physics
+				id="ModuleTag_Physics" />
+			<ProductionUpdate
+				id="ModuleTag_Production" />
+			<SpecialPower
+				id="ModuleTag_JumpJets"
+				SpecialPowerTemplate="SpecialPowerTriggerJumpJets"
+				UpdateModuleStartsAttack="true"></SpecialPower>
+			<WeaponFireSpecialAbilityUpdate
+				SpecialWeapon="ZoneTrooperFireJumpJets"
+				id="ModuleTag_JumpJetUpdate"
+				SpecialPowerTemplate="SpecialPowerTriggerJumpJets"
+				UnpackTime=".4s"
+				UnpackSound="GDI_ZoneTrooper_JumpJetStart"
+				PackTime=".4s"				
+				BusyForDuration="3s"
+				WhichSpecialWeapon="1"
+				TriggerSound="ZoneTrooperJumpJetFire" />
+			<BezierProjectile
+				id="ModuleTag_Projectile"
+				FirstHeightMin="50"
+				FirstHeightMax="50"
+				SecondHeightMin="50"
+				SecondHeightMax="50"
+				FirstPercentIndent="30"
+				SecondPercentIndent="70"
+				TumbleRandomly="true"
+				CrushStyle="true"
+				BounceCount="0"
+				FinalStuckTime="1.766s"
+				GroundHitFX="FX_ZoneTrooperJumpJetHitsGround"
+				PreLandingStateTime="0.3s" />
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="3s"
+				SinkRate="2.4"
+				DestructionDelay="4.5s">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Sound
+					Type="INITIAL"
+					List="GDI_ZoneTrooper_VoiceDie" />
+			</SlowDeath>
+			<SubObjectsUpgrade
+				id="ModuleTag_ShowScanner"
+				ShowSubObjects="UGSCANNER">
+				<TriggeredBy>Upgrade_ZoneTrooperScannerPack</TriggeredBy>
+			</SubObjectsUpgrade>
+			<!--Auto Injectors-->
+			<AutoHealBehavior
+				id="Upgrade_AutoInjectors_02"
+				InitiallyActive="false"
+				HealOnlyIfNotInCombat="true"
+				HealOnlyIfNotUnderAttack="true"
+				StartHealingDelay="5s"
+				HealingAmount="10"
+				HealingDelay="3s">
+				<TriggeredBy>Upgrade_ZoneTrooperAutoInjectors</TriggeredBy>
+			</AutoHealBehavior>
+			<SubObjectsUpgrade
+				id="ModuleTag_ShowInjectors"
+				ShowSubObjects="UGINJECTOR">
+				<TriggeredBy>Upgrade_ZoneTrooperAutoInjectors</TriggeredBy>
+			</SubObjectsUpgrade>
+			<AttributeModifierUpgrade
+				id="Upgrade_AutoInjectors_01"
+				AttributeModifier="ZoneTrooper_AutoInjectors">
+				<TriggeredBy>Upgrade_ZoneTrooperAutoInjectors</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<xi:include
+				href="DATA:Includes/GDICallForTransport.xml" />
+			<LargeGroupAudioUpdate
+				id="LGAU">
+				<Key>GDI_ZoneTrooper</Key>
+			</LargeGroupAudioUpdate>
+			<AudioLoopUpgrade id="Generic_Infantry_UpgradeZoneTrooperScannerPack" SoundToPlay="Generic_Infantry_Upgrade"> 
+				<TriggeredBy>Upgrade_ZoneTrooperScannerPack</TriggeredBy> 
+			</AudioLoopUpgrade> 
+			<AudioLoopUpgrade id="Generic_Infantry_UpgradeZoneTrooperAutoInjectors" SoundToPlay="Generic_Infantry_Upgrade"> 
+				<TriggeredBy>Upgrade_ZoneTrooperAutoInjectors</TriggeredBy> 
+			</AudioLoopUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				AILuaEventsList="GDIZoneTrooperFunctions">
+				<UnitAITargetChooserData
+					SympathyRange="100.0" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_03"
+				MaxHealth="240" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="7.0"
+				MinorRadius="7.0"
+				Height="13.0"></Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry
+				Sound="GDI_ZoneTrooper_VoiceAttack"
+				AudioType="voiceAttack" />
+			<AudioEntry
+				Sound="GDI_ZoneTrooper_VoiceCreate"
+				AudioType="voiceFullyCreated" />
+			<AudioEntry
+				Sound="GDI_ZoneTrooper_VoiceGarrison"
+				AudioType="voiceGarrison" />
+			<AudioEntry
+				Sound="GDI_ZoneTrooper_VoiceMoveAttack"
+				AudioType="voiceAttackAfterMoving" />
+			<AudioEntry
+				Sound="GDI_ZoneTrooper_VoiceMove"
+				AudioType="voiceGuard" />
+			<AudioEntry
+				Sound="GDI_ZoneTrooper_VoiceMove"
+				AudioType="voiceMove" />
+			<AudioEntry
+				Sound="GDI_ZoneTrooper_VoiceRetreat"
+				AudioType="voiceRetreatToCastle" />
+			<AudioEntry
+				Sound="GDI_ZoneTrooper_VoiceSelectMS"
+				AudioType="voiceSelect" />
+			<AudioEntry
+				Sound="GDI_ZoneTrooper_VoiceSelectBattleMS"
+				AudioType="voiceSelectBattle" />
+			<NamedEntry
+				Sound="GDI_ZoneTrooper_VoiceMoveJumpJet"
+				Name="InitiateJumpJets" />
+		</AudioArrayVoice>
+		<!--
+		<AudioArraySound>
+			<AudioEntry Sound="AudioEvent:TEMP_PredatorMoveStart" AudioType="soundMoveStart" />
+			<AudioEntry Sound="AudioEvent:PredatorAmbientLoop" AudioType="soundAmbient" />
+		</AudioArraySound>
+-->
+		<ShadowInfo
+			Type="DECAL"
+			SizeX="14"
+			SizeY="14"
+			Texture="ShadowI" />
+		<VisionInfo
+			VisionRange="350"
+			ShroudClearingRange="400" />
+		<CrusherInfo
+			CrushableLevel="1" />
+	</GameObject>
+</AssetDeclaration>

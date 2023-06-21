@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include type="all" source="ART:ra_xwing70t.w3x"/>
+	</Includes>
+	<W3DAnimation id="RA_XWING70T_AFAST" Hierarchy="RA_XWING70T" NumFrames="1" FrameRate="30">
+		<CompressionSettings AllowTimeCoded="true" AllowAdaptiveDelta="true" MaxTranslationError="0.002000" MaxRotationError="0.010000" MaxVisibilityError="0.010000" MaxAdaptiveDeltaError="0.001000" ForceReductionRate="1.000000"/>
+		<Channels>
+			<ChannelQuaternion Pivot="2" Type="Orientation" FirstFrame="0">
+				<Frame X="0.087156" Y="-0.000000" Z="-0.000000" W="0.996195"/>
+			</ChannelQuaternion>
+			<ChannelQuaternion Pivot="7" Type="Orientation" FirstFrame="0">
+				<Frame X="-0.087156" Y="-0.000000" Z="-0.000000" W="0.996195"/>
+			</ChannelQuaternion>
+		</Channels>
+	</W3DAnimation>
+</AssetDeclaration>

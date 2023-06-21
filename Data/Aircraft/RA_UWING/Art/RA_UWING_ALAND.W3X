@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include type="all" source="ART:ra_uwing.w3x"/>
+	</Includes>
+	<W3DAnimation id="RA_UWING_ALAND" Hierarchy="RA_UWING" NumFrames="1" FrameRate="30">
+		<Channels></Channels>
+	</W3DAnimation>
+</AssetDeclaration>

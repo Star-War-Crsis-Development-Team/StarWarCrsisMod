@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Includes>
+		<Include type="all" source="fx_shieldball.w3x" />
+		<Include type="all" source="RUkillerbot_a_ball_idle.w3x" />
+		<Include type="all" source="RUkillerbot_a_ball_move.w3x" />
+		<Include type="all" source="RUkillerbot_a_ball2stand.w3x" />
+		<Include type="all" source="RUkillerbot_a_stand_atk.w3x" />
+		<Include type="all" source="RUkillerbot_a_stand_die.w3x" />
+		<Include type="all" source="RUkillerbot_a_stand_idle.w3x" />
+		<Include type="all" source="RUkillerbot_a_stand_ready.w3x" />
+		<Include type="all" source="RUkillerbot_a_stand_walk.w3x" />
+		<Include type="all" source="RUkillerbot_a_stand2ball.w3x" />
+		<Include type="all" source="RUkillerbot_skl.w3x" />
+		<Include type="all" source="RUkillerbot_skn.w3x" />
+	</Includes>
+
+	<Texture
+		id="RUkillerbot"
+		File="RUkillerbot.tga" OutputFormat="A8R8G8B8" GenerateMipMaps="false" AllowAutomaticResize="false" />
+
+
+</AssetDeclaration>

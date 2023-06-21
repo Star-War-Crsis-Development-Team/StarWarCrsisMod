@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Includes>
+		<Include type="all" source="Art/Art.xml" />
+		<Include type="all" source="NODCommando.xml" />
+	</Includes>
+
+
+</AssetDeclaration>
